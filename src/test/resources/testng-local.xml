@@ -1,6 +1,6 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
 
-<suite name="Suite1" verbose="1" parallel="tests" thread-count="5">
+<suite name="React Store UI Tests" verbose="1" parallel="tests" thread-count="5">
   <test name="Chrome Tests" >
     <parameter name="browser" value="chrome"></parameter>
     <parameter name="capabilities" value="/capabilities-local/capabilities-chrome.properties"></parameter>
@@ -15,11 +15,11 @@
       <parameter name="capabilities" value="/capabilities-local/capabilities-firefox.properties"></parameter>
     </classes>
   </test>
-  <test name="Safari Tests" >
-    <parameter name="browser" value="safari"></parameter>
-    <classes>
-      <class name="com.teksenz.reactstore.tests.StoreTests" />
-      <parameter name="capabilities" value="/capabilities-local/capabilities-safari.properties"></parameter>
-    </classes>
-  </test>
+<!--  <test name="Safari Tests" >-->
+<!--    <parameter name="browser" value="safari"></parameter>-->
+<!--    <classes>-->
+<!--      <class name="com.teksenz.reactstore.tests.StoreTests" />-->
+<!--      <parameter name="capabilities" value="/capabilities-local/capabilities-safari.properties"></parameter>-->
+<!--    </classes>-->
+<!--  </test>-->
 </suite>

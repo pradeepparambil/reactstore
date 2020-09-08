@@ -1,12 +1,15 @@
 package com.teksenz.reactstore.lib;
 
+import com.teksenz.reactstore.listener.WebDriverListener;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.By;
 import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.firefox.GeckoDriverService;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.remote.service.DriverService;
 import org.openqa.selenium.safari.SafariDriverService;
+import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.annotations.*;
@@ -28,8 +31,7 @@ public class TestBase {
     protected String baseUrl;
     DesiredCapabilities capabilities;
     public static final String DEF_SITE_URL="http://localhost:3000/";
-
-
+    private static ThreadLocal<RemoteWebDriver> tDriver = new ThreadLocal<>();
 
     @Parameters({"browser", "capabilities"})
     @BeforeTest
@@ -112,14 +114,21 @@ public class TestBase {
 
 
         driver = new RemoteWebDriver(gridUrl, capabilities);
+        tDriver.set(driver);
         baseUrl = getProperty("site.url");
         log.info("baseUrl : "+ baseUrl);
+        driver.manage().window().maximize();
         driver.get(baseUrl);
+
 
     }
     @AfterMethod
     public void killBrowser() {
         // Killing browser
         driver.quit();
+
+    }
+    public static synchronized RemoteWebDriver getDriver(){
+        return tDriver.get();
     }
 }

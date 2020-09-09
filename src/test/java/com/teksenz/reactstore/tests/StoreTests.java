@@ -2,16 +2,18 @@ package com.teksenz.reactstore.tests;
 
 import com.teksenz.reactstore.lib.TestBase;
 import com.teksenz.reactstore.pages.Store;
+import com.teksenz.reactstore.testdata.ShoppingList;
 import io.qameta.allure.*;
 import jdk.jfr.Description;
 import org.testng.Assert;
 import org.testng.SkipException;
 import org.testng.annotations.Test;
-@Epic("Epic-001")
-@Feature("Feature1")
+@Epic("Purchase")
+@Feature("Shopping cart")
+@Story("Add a product to cart")
 public class StoreTests extends TestBase {
     @Test(description = "Verify the title name transition from ADD TO CART to ADD MORE")
-    @Story("Button name change in AddToCart")
+
     @Severity(SeverityLevel.BLOCKER)
     public void AddToCart(){
         String product = "Buffalo - Striploin";
@@ -24,19 +26,18 @@ public class StoreTests extends TestBase {
 
     }
 
-//    @Test
-//    @Description("Demo test to see a failure")
-//    @Story("Check for a failure")
-//    @Step("Test to make a failure")
-//    @Severity(SeverityLevel.CRITICAL)
-//    public void demoTest(){
-//        Assert.fail("Failed the test");
-//    }
-
-    @Test
+    @Test(description = "This is a skip demonstration test")
     public void registration(){
         throw new SkipException("Skipping the test");
     }
 
+    @Test(dataProvider = "shoppingList",
+            dataProviderClass = com.teksenz.reactstore.testdata.DataBank.class,
+            description = "Parameterization demo"
+    )
+    public void parameterizedTest(ShoppingList shoppingList){
+        System.out.println(shoppingList);
+
+    }
 
 }

@@ -1,4 +1,7 @@
 # reactstore
+AUT Code - https://github.com/pradeepparambil/react-shopping-cart
+To start the app in local machine - npm start
+
 
 Features
 1.Cross browser testing with various browsers and versions
